@@ -24,10 +24,13 @@ namespace CamFolder
         {
             //View
             services.AddTransient<View.MainView>();
+            services.AddTransient<View.Test1>();
+            services.AddTransient<View.Test2>();
 
             //ViewModels
             services.AddTransient<ViewModel.MainViewModel>();
             services.AddTransient<ViewModel.MenuViewModel>();
+            services.AddTransient<ViewModel.HomeViewModel>();
 
         }
     }

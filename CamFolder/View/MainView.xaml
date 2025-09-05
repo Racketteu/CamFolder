@@ -2,13 +2,20 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Cam Folder" Height="400" Width="600"
+        xmlns:views="clr-namespace:CamFolder.View"
+        xmlns:viewModels="clr-namespace:CamFolder.ViewModel"
+        Title="Cam Folder" Height="375" MinHeight="375" Width="600" MinWidth="600"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}">
-
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
+            <views:Test1 />
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -18,6 +25,7 @@
 
         <StackPanel Grid.Row="0"
                     Orientation="Horizontal"
+                    HorizontalAlignment="Center"
                     Margin="2">
             <ItemsControl ItemsSource="{Binding MenuButton}">
                 <ItemsControl.ItemTemplate>
@@ -67,6 +75,11 @@
                 Grid.Row="1"
                 Text="31/08/2025" 
                 VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Column="1"
+              Grid.RowSpan="2">
+            <ContentControl Content="{Binding CurrentViewModel}" />
         </Grid>
     </Grid>
 </Window>

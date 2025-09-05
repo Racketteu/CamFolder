@@ -1,15 +1,25 @@
 ﻿using CamFolder.Model;
+using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using MaterialDesignThemes.Wpf;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Input;
 
 namespace CamFolder.ViewModel
 {
-    public class MainViewModel
+    public class MainViewModel : ObservableObject
     {
+        private object _currentViewModel;
+        public object CurrentViewModel
+        {
+            get => _currentViewModel;
+            set
+            {
+                _currentViewModel = value;
+                OnPropertyChanged(); // Notifie la vue que la propriété a changé
+            }
+        }
+
+
         public ObservableCollection<MenuItem> MenuButton { get; set; }
 
         public MainViewModel()
@@ -22,6 +32,7 @@ namespace CamFolder.ViewModel
                 new MenuItem { Title = "Drive", Icon = PackIconKind.Cloud },
                 new MenuItem { Title = "Paramètres", Icon = PackIconKind.Settings }
             };
+            CurrentViewModel = new HomeViewModel();
         }
 
 

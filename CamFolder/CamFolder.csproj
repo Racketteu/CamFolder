@@ -6,17 +6,25 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Ressource\Logo.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CustomizeElement\**" />
+    <EmbeddedResource Remove="CustomizeElement\**" />
+    <None Remove="CustomizeElement\**" />
+    <Page Remove="CustomizeElement\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Ressource\Logo.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="MaterialDesignColors" Version="5.2.1" />
     <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CustomizeElement\" />
   </ItemGroup>
 
 </Project>
