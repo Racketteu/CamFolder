@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="CamFolder.View.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CamFolder.View" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="CamFolder"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="20"/>
+
+        <TextBlock Grid.Row="1"
+                     Text="Welcome to CamFolder! This application helps you organize and manage your camera files efficiently. Use the menu to navigate through different features."
+                     TextWrapping="Wrap"
+                     FontSize="16"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Margin="20"/>
+
+        <StackPanel
+                Grid.Row="3"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10">
+            <TextBlock Text="Developed by William" 
+                       FontSize="14" 
+                       VerticalAlignment="Center"/>
+            <Button Margin="10,0"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Command="{Binding OpenGitLabCommand}">
+                <materialDesign:PackIcon 
+                    Kind="Github"
+                    FontSize="50"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

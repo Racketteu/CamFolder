@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CamFolder.View
 {
     /// <summary>
-    /// Logique d'interaction pour Test1.xaml
+    /// Logique d'interaction pour SettingsView.xaml
     /// </summary>
-    public partial class Test1 : UserControl
+    public partial class SettingsView : UserControl
     {
-        public Test1()
+        public SettingsView()
         {
             InitializeComponent();
         }

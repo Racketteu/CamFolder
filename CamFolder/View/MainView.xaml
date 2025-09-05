@@ -9,7 +9,16 @@
         Background="{DynamicResource MaterialDesignPaper}">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
-            <views:Test1 />
+            <views:HomeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:MoveFileViewModel}">
+            <views:MoveFileView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:RenameFileViewModel}">
+            <views:RenameFileView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
+            <views:SettingsView />
         </DataTemplate>
     </Window.Resources>
     

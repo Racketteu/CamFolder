@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using CommunityToolkit.Mvvm.Input;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace CamFolder.Model
     {
         public string Title { get; set; }
         public PackIconKind Icon { get; set; }
+        public IRelayCommand Command { get; set; }
     }
 }

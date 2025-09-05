@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 namespace CamFolder.View
 {
     /// <summary>
-    /// Logique d'interaction pour Test2.xaml
+    /// Logique d'interaction pour Test1.xaml
     /// </summary>
-    public partial class Test2 : UserControl
+    public partial class HomeView : UserControl
     {
-        public Test2()
+        public HomeView()
         {
             InitializeComponent();
+            DataContext = new ViewModel.HomeViewModel();
         }
     }
 }

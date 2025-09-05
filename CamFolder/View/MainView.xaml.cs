@@ -12,7 +12,6 @@ namespace CamFolder.View
         public MainView()
         {
             InitializeComponent();
-            DataContext = App.serviceProvider.GetService<MainViewModel>();
         }
     }
 }
