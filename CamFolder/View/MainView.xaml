@@ -4,9 +4,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:views="clr-namespace:CamFolder.View"
         xmlns:viewModels="clr-namespace:CamFolder.ViewModel"
-        Title="Cam Folder" Height="375" MinHeight="375" Width="600" MinWidth="600"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}">
+        Title="Cam Folder" Height="375" MinHeight="375" Width="650" MinWidth="650"
+        Style="{StaticResource MaterialDesignWindow}">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
             <views:HomeView />
@@ -41,6 +40,7 @@
                     <DataTemplate>
                         <Button Command="{Binding Command}" 
                                 Height="50" 
+                                materialDesign:ButtonAssist.CornerRadius="7"
                                 Margin="2">
                             <StackPanel Orientation="Vertical" 
                                         VerticalAlignment="Center">

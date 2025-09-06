@@ -43,12 +43,14 @@
             <TextBlock Text="Developed by William" 
                        FontSize="14" 
                        VerticalAlignment="Center"/>
-            <Button Margin="10,0"
+            <Button Margin="5,0"
                     Style="{StaticResource MaterialDesignFlatButton}"
-                    Command="{Binding OpenGitLabCommand}">
+                    Command="{Binding OpenGitLabCommand}"
+                    materialDesign:ButtonAssist.CornerRadius="5">
                 <materialDesign:PackIcon 
                     Kind="Github"
-                    FontSize="50"/>
+                    Width="24"
+                    Height="24"/>
             </Button>
         </StackPanel>
     </Grid>
