@@ -41,7 +41,7 @@
                      Margin="10,0,10,0"
                      MinWidth="200"/>
             <Button Content="Parcourir"
-                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
                     Grid.Row="0"
                     Grid.Column="2"
                     Command="{Binding BrowseSourceCommand}" 
@@ -57,7 +57,7 @@
                     Grid.Column="1"
                     MinWidth="200"/>
             <Button Content="Parcourir" 
-                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
                     Command="{Binding BrowseDestinationCommand}" 
                     Margin="10,0,0,0"
                     Grid.Row="2"
@@ -67,6 +67,7 @@
                  Grid.ColumnSpan="3"
                  Margin="10"
                  Content="Déplacer les fichiers"
+                 Style="{StaticResource MaterialDesignFlatButton}"
                  Command="{Binding MoveFilesCommand}"
                  HorizontalAlignment="Right"
                  Padding="10,5"/>

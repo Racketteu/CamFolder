@@ -27,11 +27,13 @@ namespace CamFolder
             services.AddTransient<View.HomeView>();
             services.AddTransient<View.MoveFileView>();
             services.AddTransient<View.RenameFileView>();
+            services.AddTransient<View.SortView>();
             services.AddTransient<View.SettingsView>();
 
             //ViewModels
             services.AddTransient<ViewModel.MainViewModel>();
             services.AddTransient<ViewModel.MenuViewModel>();
+            services.AddTransient<ViewModel.SortViewModel>();
             services.AddTransient<ViewModel.HomeViewModel>();
             services.AddTransient<ViewModel.MoveFileViewModel>();
             services.AddTransient<ViewModel.RenameFileViewModel>();

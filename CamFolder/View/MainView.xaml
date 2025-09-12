@@ -16,6 +16,9 @@
         <DataTemplate DataType="{x:Type viewModels:RenameFileViewModel}">
             <views:RenameFileView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:SortViewModel}">
+            <views:SortView />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
             <views:SettingsView />
         </DataTemplate>
@@ -41,6 +44,7 @@
                         <Button Command="{Binding Command}" 
                                 Height="50" 
                                 materialDesign:ButtonAssist.CornerRadius="7"
+                                Style="{StaticResource MaterialDesignFlatSecondaryButton}"
                                 Margin="2">
                             <StackPanel Orientation="Vertical" 
                                         VerticalAlignment="Center">
