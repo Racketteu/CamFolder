@@ -68,11 +68,11 @@
                 Grid.Row="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="3">
-                <RadioButton IsChecked="{Binding KeepCurentFileStructure}" 
+                <RadioButton IsChecked="{Binding KeepStructure}" 
                       Content="Conserver l'arborescence actuelle" 
                       VerticalAlignment="Center"
                       Margin="0,10,0,0"/>
-                <RadioButton IsChecked="{Binding IncludeSubdirectories}" 
+                <RadioButton IsChecked="{Binding OneFolder}" 
                       Content="Tout dans un seul dossier" 
                       Grid.Row="4"
                       Grid.Column="0"

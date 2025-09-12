@@ -20,6 +20,7 @@ namespace CamFolder.ViewModel
 
         public MoveFileViewModel()
         {
+            KeepStructure = true;
             BrowseSourceCommand = new RelayCommand(BrowseSource);
             BrowseDestinationCommand = new RelayCommand(BrowseDestination);
             MoveFilesCommand = new RelayCommand(MoveFiles);
@@ -44,6 +45,22 @@ namespace CamFolder.ViewModel
         public ICommand BrowseDestinationCommand { get; }
         public ICommand MoveFilesCommand { get; }
 
+        private bool _keepStructure;
+        public bool KeepStructure
+        {
+            get => _keepStructure;
+            set { _keepStructure = value; OnPropertyChanged(); }
+        }
+
+        private bool _oneFolder;
+        public bool OneFolder
+        {
+            get => _oneFolder;
+            set { _oneFolder = value; OnPropertyChanged(); }
+        }
+
+
+
         #endregion
 
         public void MoveFiles()
@@ -52,7 +69,10 @@ namespace CamFolder.ViewModel
             {
                 try
                 {
-                    CopyDirectory(_sourcePath, _destinationPath);
+                    if(KeepStructure)
+                        CopyDirectoryKeepStructure(_sourcePath, _destinationPath);
+                    else
+                        CopyDirectory(_sourcePath, _destinationPath);
                     MessageBox.Show("Le déplacement de fichiers a été complété avec succès.", "Information");
                 }
                 catch (Exception ex)
