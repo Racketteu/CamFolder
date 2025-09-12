@@ -1,9 +1,11 @@
 ﻿using CamFolder.Model;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Win32;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace CamFolder.ViewModel
@@ -20,7 +22,7 @@ namespace CamFolder.ViewModel
         {
             BrowseSourceCommand = new RelayCommand(BrowseSource);
             BrowseDestinationCommand = new RelayCommand(BrowseDestination);
-            MoveFileCommand = new RelayCommand(MoveFiles);
+            MoveFilesCommand = new RelayCommand(MoveFiles);
         }
 
         #region MVVM Front
@@ -40,9 +42,7 @@ namespace CamFolder.ViewModel
 
         public ICommand BrowseSourceCommand { get; }
         public ICommand BrowseDestinationCommand { get; }
-        public ICommand MoveFileCommand { get; }
-
-
+        public ICommand MoveFilesCommand { get; }
 
         #endregion
 
@@ -53,57 +53,102 @@ namespace CamFolder.ViewModel
                 try
                 {
                     CopyDirectory(_sourcePath, _destinationPath);
-                    MessageBox.Show("Le déplacement de fichiers a été complété avec succès.");
+                    MessageBox.Show("Le déplacement de fichiers a été complété avec succès.", "Information");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Une erreur est survenue : {ex.Message}");
+                    MessageBox.Show($"Une erreur est survenue : {ex.Message}", "Erreur");
                 }
             }
             else
             {
-                MessageBox.Show("Le dossier source n'existe pas.");
+                MessageBox.Show("Le dossier source n'existe pas.", "Erreur");
             }
         }
 
-        public void CopyDirectory(string sourceDir, string destDir)
+        public void CopyDirectoryKeepStructure(string sourcePath, string destinationPath)
         {
-            Directory.CreateDirectory(destDir);
+            if(!Directory.Exists(destinationPath))
+                Directory.CreateDirectory(destinationPath);
 
-            foreach (string file in Directory.GetFiles(sourceDir))
+            foreach (string file in Directory.GetFiles(sourcePath))
             {
                 try
                 {
                     string fileName = Path.GetFileName(file);
-                    string destFile = Path.Combine(destDir, fileName);
+                    string destFile = Path.Combine(destinationPath, fileName);
                     File.Copy(file, destFile, true);
-                    Console.WriteLine($"Fichier copié : {fileName}");
-                    this.listCopiedFiles.Add(new CopiedFile { Path = sourceDir, Name = file, IsCopied = true });
+
+                    this.listCopiedFiles.Add(new CopiedFile { Path = sourcePath, Name = file, IsCopied = true });
                 }
                 catch (Exception ex)
                 {
-                    this.listCopiedFiles.Add(new CopiedFile { Path = sourceDir, Name = file, IsCopied = false });
+                    this.listCopiedFiles.Add(new CopiedFile { Path = sourcePath, Name = file, IsCopied = false });
                     throw;
                 }
             }
 
-            foreach (string subDir in Directory.GetDirectories(sourceDir))
+            foreach (string subDir in Directory.GetDirectories(sourcePath))
             {
                 string dirName = Path.GetFileName(subDir);
-                string newDestDir = Path.Combine(destDir, dirName);
-                CopyDirectory(subDir, newDestDir);
+                string newDestDir = Path.Combine(destinationPath, dirName);
+                CopyDirectoryKeepStructure(subDir, newDestDir);
+            }
+        }
+
+        public void CopyDirectory(string sourcePath, string destinationPath)
+        {
+            if (!Directory.Exists(destinationPath))
+                Directory.CreateDirectory(destinationPath);
+
+            foreach (string file in Directory.GetFiles(sourcePath))
+            {
+                try
+                {
+                    string fileName = Path.GetFileName(file);
+                    string destFile = Path.Combine(destinationPath, fileName);
+                    File.Copy(file, destFile, true);
+
+                    this.listCopiedFiles.Add(new CopiedFile { Path = sourcePath, Name = file, IsCopied = true });
+                }
+                catch (Exception ex)
+                {
+                    this.listCopiedFiles.Add(new CopiedFile { Path = sourcePath, Name = file, IsCopied = false });
+                    throw;
+                }
+            }
+
+            foreach (string subDir in Directory.GetDirectories(sourcePath))
+            {
+                string dirName = Path.GetFileName(subDir);
+                string newDestDir = Path.Combine(destinationPath, dirName);
+                CopyDirectory(subDir, destinationPath);
             }
         }
 
         private void BrowseSource()
         {
-            SourcePath = "C:\\Source";
+            SourcePath = OpenBrowserFile();
         }
 
         private void BrowseDestination()
         {
-            DestinationPath = "C:\\Destination";
+            DestinationPath = OpenBrowserFile();
         }
 
+        private string OpenBrowserFile()
+        {
+            var folderDialog = new OpenFolderDialog
+            {
+                Multiselect = false,
+            };
+
+            if (folderDialog.ShowDialog() == true)
+            {
+                return folderDialog.FolderName;
+            }
+            return string.Empty;
+
+        }
     }
 }
